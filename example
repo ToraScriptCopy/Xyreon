@@ -1,1 +1,86 @@
+-- 1. Загружаем библиотеку
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScriptCopy/Xyreon/main/Lib.txt", true))()
 
+-- 2. (Опционально) Настраиваем тему под свой вкус
+Library.theme.Primary = Color3.fromRGB(0, 255, 150)
+Library.theme.OnPrimary = Color3.fromRGB(0, 50, 25)
+Library.theme.UseGradient = true -- Включаем или отключаем градиентный фон
+
+-- 3. Создаем окно с вкладками
+local Window = Library:CreateWindow({
+    Title = "Xyreon Demo",
+    Tag = "v3.0",
+    Tabs = {"Main", "Settings", "Visuals"}
+})
+
+-- 4. Получаем интерфейс для каждой вкладки
+local MainTab = Window:Tab("Main")
+local SettingsTab = Window:Tab("Settings")
+local VisualsTab = Window:Tab("Visuals")
+
+-- 5. Заполняем вкладку "Main"
+MainTab:AddInfo({ text = "Добро пожаловать! Это демонстрация возможностей библиотеки.", icon = "info" })
+MainTab:AddToggle({
+    text = "Включить главную функцию",
+    state = true,
+    icon = "check",
+    callback = function(state)
+        print("Главная функция теперь:", state)
+    end
+})
+MainTab:AddButton({
+    text = "Выполнить действие",
+    icon = "box",
+    callback = function()
+        print("Действие выполнено!")
+    end
+})
+
+MainTab:AddSeparator()
+
+MainTab:AddSlider({
+    text = "Уровень мощности",
+    min = 0,
+    max = 100,
+    value = 75,
+    callback = function(value)
+        print("Уровень мощности установлен на:", value)
+    end
+})
+
+-- 6. Заполняем вкладку "Settings"
+SettingsTab:AddLabel({ text = "Конфигурация", icon = "settings" })
+SettingsTab:AddBind({
+    text = "Переключить UI",
+    key = "RightControl",
+    callback = function()
+        Library:Close()
+    end
+})
+SettingsTab:AddBox({
+    text = "Имя пользователя",
+    value = "Xyreon",
+    callback = function(text, enterPressed)
+        print("Имя пользователя изменено на:", text)
+    end
+})
+
+-- 7. Заполняем вкладку "Visuals"
+VisualsTab:AddColor({
+    text = "Основной цвет",
+    color = Color3.fromRGB(255, 80, 80),
+    callback = function(color)
+        print("Цвет изменен на:", color)
+    end
+})
+VisualsTab:AddList({
+    text = "Приоритет цели",
+    values = {"Ближайший", "Наименьшее здоровье", "Наибольшая угроза"},
+    value = "Ближайший",
+    callback = function(selectedValue)
+        print("Приоритет установлен на:", selectedValue)
+    end
+})
+
+-- 8. Инициализируем UI (Это делает его видимым)
+Library:Init()
