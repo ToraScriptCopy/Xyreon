@@ -1,5 +1,5 @@
 
-md_content_en_no_emojis = """# Xyreon UI Library v3.0 - API Reference
+# Xyreon UI Library v3.0 - API Reference
 
 Official documentation for the Xyreon UI Library. This guide provides a comprehensive overview of all available methods and parameters for interface development.
 
